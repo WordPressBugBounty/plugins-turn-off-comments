@@ -111,3 +111,70 @@ function turn_off_comments_activation_notification() {
     }
 }
 
+
+/* Since v1.6.17 */
+
+// Hook to admin_notices to display the messages
+add_action( 'admin_notices', 'blogbd2_recommended_plugins' );
+
+function blogbd2_recommended_plugins() {
+    // Include necessary plugin functions
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+    $plugin_file = 'about-post-author/about-post-author.php';
+
+    // Check if the plugin is installed
+    $is_installed = file_exists( WP_PLUGIN_DIR . '/' . $plugin_file );
+
+    // Check if the plugin is active
+    $is_active = is_plugin_active( $plugin_file );
+
+    // Display "Install Now" notice if the plugin is not installed
+    if ( !$is_installed ) {
+        $plugin_slug = 'about-post-author';
+        $install_url = wp_nonce_url(
+            self_admin_url( 'update.php?action=install-plugin&plugin=' . $plugin_slug ),
+            'install-plugin_' . $plugin_slug
+        );
+        ?>
+        <div class="notice notice-info is-dismissible">
+            <p>
+                <?php _e( 'We recommend installing the "Author Box" plugin to enhance your blogging experience.', 'turn-off-comments' ); ?>
+            </p>
+            <p>
+                <a href="<?php echo esc_url( $install_url ); ?>" class="button button-primary">
+                    <?php _e( 'Install Now', 'turn-off-comments' ); ?>
+                </a>
+            </p>
+        </div>
+        <?php
+    }
+
+    // Display "Activate Now" notice if the plugin is installed but not activated
+    elseif ( !$is_active ) {
+        $activate_url = wp_nonce_url(
+            self_admin_url( 'plugins.php?action=activate&plugin=' . $plugin_file ),
+            'activate-plugin_' . $plugin_file
+        );
+        ?>
+        <div class="notice notice-warning is-dismissible">
+            <p>
+                <?php _e( 'The "Author Box" plugin is installed but not active. Please activate it to enhance your blogging experience.', 'turn-off-comments' ); ?>
+            </p>
+            <p>
+                <a href="<?php echo esc_url( $activate_url ); ?>" class="button button-primary">
+                    <?php _e( 'Activate Now', 'turn-off-comments' ); ?>
+                </a>
+            </p>
+        </div>
+        <?php
+    }
+}
+
+// Enqueue script to handle plugin installation and activation
+add_action( 'admin_enqueue_scripts', 'blogbd2_plugins_enqueue_script' );
+function blogbd2_plugins_enqueue_script() {
+    // Include the WordPress plugin installer script
+    wp_enqueue_script( 'plugin-install' );
+    wp_enqueue_script( 'updates' );
+}

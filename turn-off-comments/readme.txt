@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/mehrazmorshed
 Tags: disable comments, remove comments, hide comments, stop spam, disable comment
 Requires at least: 4.4
 Tested up to: 6.6
-Stable tag: 1.6.16
+Stable tag: 1.6.17
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
