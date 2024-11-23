@@ -4,7 +4,7 @@
  * Plugin Name:       Turn Off Comments
  * Plugin URI:        https://wordpress.org/plugins/turn-off-comments/
  * Description:       Turn Off Comments from your WordPress Website.
- * Version:           1.6.18
+ * Version:           1.6.19
  * Tested Up to:      6.7
  * Requires at least: 4.4
  * Requires PHP:      7.0
