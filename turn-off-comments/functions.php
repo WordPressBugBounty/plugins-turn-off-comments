@@ -112,3 +112,95 @@ function turn_off_comments_activation_notification() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Save installation datetime on plugin activation
+ */
+function turn_off_comments_activate() {
+    // Check if the installation time is already saved
+    $installed = get_option('turn_off_comments_installed');
+    
+    if (!$installed) {
+        // Save current datetime if not already set
+        update_option('turn_off_comments_installed', current_time('mysql'));
+    }
+}
+register_activation_hook(__FILE__, 'turn_off_comments_activate');
+
+/**
+ * Clean up options on plugin uninstallation
+ */
+function turn_off_comments_uninstall() {
+    delete_option('turn_off_comments_installed');
+}
+register_uninstall_hook(__FILE__, 'turn_off_comments_uninstall');
+
+/**
+ * Show migration notice for installations before May 15, 2025
+ */
+function comments_show_migration_notice() {
+    // Only show if new plugin is not active
+    if (is_plugin_active('daisy-comments/daisy-comments.php')) {
+        return;
+    }
+    
+    // Get installation date
+    $install_date = get_option('turn_off_comments_installed');
+    
+    // Only show notice if:
+    // 1. There is NO install date (new installation) OR
+    // 2. Installation date is BEFORE May 15, 2025
+    if ($install_date && strtotime($install_date) >= strtotime('2025-05-15')) {
+        return;
+    }
+    
+    // Get install/activate URLs
+    $install_url = wp_nonce_url(
+        add_query_arg([
+            'action' => 'install-plugin',
+            'plugin' => 'daisy-comments'
+        ], admin_url('update.php')),
+        'install-plugin_daisy-comments'
+    );
+    
+    $activate_url = '';
+    if (file_exists(WP_PLUGIN_DIR . '/daisy-comments/daisy-comments.php')) {
+        $activate_url = wp_nonce_url(
+            add_query_arg([
+                'action' => 'activate',
+                'plugin' => 'daisy-comments/daisy-comments.php'
+            ], admin_url('plugins.php')),
+            'activate-plugin_daisy-comments/daisy-comments.php'
+        );
+    }
+    ?>
+    <div class="notice notice-error">
+        <h4><?php esc_html_e('Important Notice About Turn Off Comments', 'turn-off-comments'); ?></h4>
+        <p>
+            <?php _e('This plugin is no longer maintained. Please migrate to our new improved plugin <b style="color: blue;">"Daisy Comments"</b> for continued support, new features, and future updates.', 'turn-off-comments'); ?>
+        </p>
+        <p>
+            <?php if ($activate_url) : ?>
+                <a href="<?php echo esc_url($activate_url); ?>" class="button button-primary">
+                    <?php esc_html_e('Activate Daisy Comments Now', 'turn-off-comments'); ?>
+                </a>
+            <?php else : ?>
+                <a href="<?php echo esc_url($install_url); ?>" class="button button-primary">
+                    <?php esc_html_e('Migrate to Daisy Comments Now', 'turn-off-comments'); ?>
+                </a>
+            <?php endif; ?>
+        </p>
+    </div>
+    <?php
+}
+add_action('admin_notices', 'comments_show_migration_notice');
