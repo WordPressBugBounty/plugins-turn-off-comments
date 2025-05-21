@@ -160,7 +160,7 @@ function comments_show_migration_notice() {
     // Only show notice if:
     // 1. There is NO install date (new installation) OR
     // 2. Installation date is BEFORE May 15, 2025
-    if ($install_date && strtotime($install_date) >= strtotime('2025-05-15')) {
+    if ($install_date && strtotime($install_date) >= strtotime('2025-05-25')) {
         return;
     }
     
