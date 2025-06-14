@@ -146,7 +146,7 @@ function turn_off_comments_uninstall() {
 register_uninstall_hook(__FILE__, 'turn_off_comments_uninstall');
 
 /**
- * Show migration notice for installations before May 15, 2025
+ * Show migration notice for installations before June 30, 2025
  */
 function comments_show_migration_notice() {
     // Only show if new plugin is not active
@@ -159,8 +159,8 @@ function comments_show_migration_notice() {
     
     // Only show notice if:
     // 1. There is NO install date (new installation) OR
-    // 2. Installation date is BEFORE May 15, 2025
-    if ($install_date && strtotime($install_date) >= strtotime('2025-05-25')) {
+    // 2. Installation date is BEFORE June 30, 2025
+    if ($install_date && strtotime($install_date) >= strtotime('2025-06-30')) {
         return;
     }
     
