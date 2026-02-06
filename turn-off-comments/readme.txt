@@ -1,11 +1,11 @@
-=== Turn Off Comments – Remove Comments, Hide Comment Box, Disable Comments and Stop Spam ===
+=== Turn Off Comments — Hide Comment Box and Stop Spam ===
 Contributors: mehrazmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
 Tags: disable comments, remove comments, hide comments, stop spam, disable comment
-Requires at least: 5.2
-Tested up to: 6.8
-Stable tag: 1.7.7
-Requires PHP: 7.2
+Requires at least: 4.4
+Tested up to: 6.9
+Stable tag: 1.8
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,9 +25,9 @@ Comments can be a valuable tool for website owners, allowing for engagement with
 * <strong>Moderation Overload:</strong> Managing comments can be time-consuming, especially for websites with high traffic.
 * <strong>Privacy Concerns:</strong> Sometimes, website owners may want to disallow comments for privacy or security reasons.
 
-To address these issues, the <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> WordPress Plugin offers the essential feature of hide comment section that makes easier to disable comment box and protect your website from spamming.
+To address these issues, the <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> offers the essential feature of hide comment section that makes easier to disable comment box and protect your website from spamming.
 
-## Why install Turn Off Comments plugin?
+## Why use Turn Off Comments?
 
 * By providing a simple, easy to use solution for disabling comment box and hiding comments, <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> empowers WordPress Webmasters to maintain a spam-free and engaging website. 
 
@@ -70,65 +70,51 @@ Activate the plugin. That's it.
 
 Just deactivate the plugin.
 
-== Other Useful Plugins ==
-
-## Hide Titles – Remove Title from Post and Page
-
-<strong>[Hide Titles](https://wordpress.org/plugins/hide-titles)</strong> is a lightweight and user-friendly tool that allows you to control over the visibility of titles of pages and single posts on your WordPress website. Whether you want to show or hide titles, <strong>[Hide Titles](https://wordpress.org/plugins/hide-titles)</strong> has got you covered.
-
-## Turn Off Comments – Disable Comment Box and Hide Comments
-
-The <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> Plugin is a valuable tool for WordPress Websites to remove comment section and hide comments. The <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> WordPress Plugin offers the essential feature of hide comment section that makes easier to disable comment box and protect your website from spamming.
-
-== Recommended Products ==
-We recommend exploring certain plugins and extensions that could capture your interest. Feel free to discover additional projects by clicking on this link:
-
-<strong>[CoDesigner](https://wordpress.org/plugins/woolementor/)</strong>
-CoDesigner (formerly known as Woolementor) is the best solution to connect the world's leading page builder plugin, Elementor, with the most popular eCommerce plugin, WooCommerce. CoDesigner empowers you with a collection of specialized Elementor widgets tailored for WooCommerce, allowing you to enjoy absolute control over every aspect of your WooCommerce website. CoDesigner (Woolementor) stands out as the top choice when considering alternatives to ShopReady, Kadence, JetWidgets, ShopEngine, and ShopLentor (WooLentor).
-
-<strong>[WC Affiliate](https://wordpress.org/plugins/wc-affiliate/)</strong>
-If you are planning to launch an affiliate program for your WooCommerce store, WC Affiliate is the best solution as a full-fledged Affiliate Manager for WooCommerce. Launching an affiliate program gives you extraordinary sales growth if it is done properly. Using WC Affiliate you can launch a WordPress affiliate program on your WooCommerce-based store within minutes without hiring a developer! WC Affiliate is becoming the standout choice when exploring alternatives to WooCommerce Affiliate Plugin - Coupon Affiliates, YITH WooCommerce Affiliates, PW WooCommerce Affiliates, Affiliates WooCommerce Light, etc.
-
 == Changelog ==
+
+= 1.8 =
+*Release Date - 8 November 2025*
+
+* Tested with WordPress v6.9
 
 = 1.7 =
 *Release Date - 15 April 2025*
 
-* Tested with version 6.8
+* Tested with WordPress v6.8
 
 = 1.6 =
 *Release Date - 9 April 2024*
 
-* Tested with version 6.5
+* Tested with WordPress v6.5
 
 = 1.5 =
 *Release Date - 9 January 2024*
 
-* Tested with version 6.4.2
+* Tested with WordPress v6.4.2
 * Reorganized Plugin Structure
 * Optimized Code
 
 = 1.4 =
 *Release Date - 7 November 2023*
 
-* Tested with version 6.4
+* Tested with WordPress v6.4
 
 = 1.3 =
 *Release Date - 26 September 2023*
 
-* Tested with version 6.3.1
+* Tested with WordPress v6.3.1
 * Optimized code
 * Increased Compatibility
 
 = 1.2 =
 *Release Date - 10 August 2023*
 
-* Tested with version 6.3
+* Tested with WordPress v6.3
 
 = 1.1 =
 *Release Date - 26 April 2023*
 
-* Tested with version 6.2
+* Tested with WordPress v6.2
 
 = 1.0 =
 *Release Date - 12 March 2023*
