@@ -1,206 +1,142 @@
 <?php
+/**
+ * MM Comment Manager core functions.
+ *
+ * @package MM Comment Manager
+ */
 
-function turn_off_comments_load_textdomain() {
-
-    load_plugin_textdomain( 'turn-off-comments', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
+/**
+ * Block direct comment submissions.
+ *
+ * @return void
+ */
 function turn_off_comments_no_wp_comments() {
-
-    wp_die( 'No comments' );
+	wp_die(
+		esc_html__( 'Comments are turned off on this website.', 'turn-off-comments' ),
+		esc_html__( 'Comments Disabled', 'turn-off-comments' ),
+		array( 'response' => 403 )
+	);
 }
 
+/**
+ * Remove the Comments item from the admin menu.
+ *
+ * @return void
+ */
 function turn_off_comments_admin_menu() {
-
-    remove_menu_page( 'edit-comments.php' );
+	remove_menu_page( 'edit-comments.php' );
 }
 
+/**
+ * Remove the "Recent Comments" dashboard widget.
+ *
+ * @return void
+ */
 function turn_off_comments_dashboard() {
-
-    remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
 }
 
-function turn_off_comments_status() {
-
-    return false;
+/**
+ * Force comments and pings to be closed.
+ *
+ * @param bool $open Whether the item is currently open for comments/pings.
+ * @return bool Always false.
+ */
+function turn_off_comments_status( $open ) {
+	return false;
 }
 
+/**
+ * Hide any existing comments on the front end.
+ *
+ * @param array $comments Array of comments for the current post.
+ * @return array Empty array.
+ */
 function turn_off_comments_hide_existing_comments( $comments ) {
-
-    $comments = array();
-    return $comments;
+	return array();
 }
 
+/**
+ * Remove the Comments node from the admin bar.
+ *
+ * @return void
+ */
 function turn_off_comments_admin_bar_render() {
+	global $wp_admin_bar;
 
-    global $wp_admin_bar;
-    $wp_admin_bar->remove_menu( 'comments' );
+	if ( is_object( $wp_admin_bar ) ) {
+		$wp_admin_bar->remove_node( 'comments' );
+	}
 }
 
+/**
+ * Redirect any request to the comments admin screen back to the dashboard.
+ *
+ * @return void
+ */
 function turn_off_comments_admin_menu_redirect() {
+	global $pagenow;
 
-    global $pagenow;
-
-    if ($pagenow === 'edit-comments.php') {
-
-        wp_redirect( admin_url() );
-        exit;
-    }
+	if ( 'edit-comments.php' === $pagenow ) {
+		wp_safe_redirect( admin_url() );
+		exit;
+	}
 }
 
+/**
+ * Remove comment and trackback support from all registered post types.
+ *
+ * @return void
+ */
 function turn_off_comments_post_types_support() {
+	$post_types = get_post_types();
 
-    $post_types = get_post_types();
-
-    foreach ( $post_types as $post_type ) {
-
-        if ( post_type_supports( $post_type, 'comments' ) ) {
-
-            remove_post_type_support( $post_type, 'comments' );
-            remove_post_type_support( $post_type, 'trackbacks' );
-        }
-    }
+	foreach ( $post_types as $post_type ) {
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			remove_post_type_support( $post_type, 'comments' );
+			remove_post_type_support( $post_type, 'trackbacks' );
+		}
+	}
 }
 
-function disable_comment_theme_support() {
-    ?>
-        <style>
-            #comments {
-                display: none;
-            }
-            .nocomments,
-            .no-comments,
-            .has-comments,
-            .post-comments,
-            .comments-link,
-            .comments-area,
-            .comment-respond,
-            .comments-closed,
-            .comments-wrapper,
-            .wp-block-comments,
-            .comments-area__wrapper,
-            .wp-block-post-comments,
-            .wp-block-comments-title,
-            .wp-block-comment-template,
-            .wp-block-comments-query-loop {
-                display: none;
-            }
-            /** Blocksy **/
-            li.meta-comments {
-                display: none;
-            }
-        </style>
-    <?php
+/**
+ * Enqueue inline CSS that hides theme comment markup on the front end.
+ *
+ * @return void
+ */
+function turn_off_comments_hide_comment_styles() {
+	$css = '#comments,.nocomments,.no-comments,.has-comments,.post-comments,.comments-link,.comments-area,.comment-respond,.comments-closed,.comments-wrapper,.wp-block-comments,.comments-area__wrapper,.wp-block-post-comments,.wp-block-comments-title,.wp-block-comment-template,.wp-block-comments-query-loop,li.meta-comments{display:none !important;}';
+
+	wp_register_style( 'turn-off-comments', false, array(), '1.8.1' );
+	wp_enqueue_style( 'turn-off-comments' );
+	wp_add_inline_style( 'turn-off-comments', $css );
 }
 
+/**
+ * Set a transient so the activation notice is shown once.
+ *
+ * @return void
+ */
 function turn_off_comments_activation_hook() {
-
-    set_transient( 'turn-off-comments-notification', true, 5 );
+	set_transient( 'turn_off_comments_notification', true, 60 );
 }
 
+/**
+ * Display a one-time thank-you notice after activation.
+ *
+ * @return void
+ */
 function turn_off_comments_activation_notification() {
-
-    if( get_transient( 'turn-off-comments-notification' ) ) {
-
-        ?>
-        <div class="updated notice is-dismissible">
-            <p><?php esc_attr_e( 'Thank you for installing Turn Off Comments!', 'turn-off-comments' ); ?></p>
-        </div>
-        <?php
-        delete_transient( 'turn-off-comments-notification' );
-    }
+	if ( get_transient( 'turn_off_comments_notification' ) ) {
+		?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php esc_html_e( 'Thank you for installing Turn Off Comments!', 'turn-off-comments' ); ?></p>
+		</div>
+		<?php
+		delete_transient( 'turn_off_comments_notification' );
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Save installation datetime on plugin activation
- */
-function turn_off_comments_activate() {
-    // Check if the installation time is already saved
-    $installed = get_option('turn_off_comments_installed');
-    
-    if (!$installed) {
-        // Save current datetime if not already set
-        update_option('turn_off_comments_installed', current_time('mysql'));
-    }
-}
-register_activation_hook(__FILE__, 'turn_off_comments_activate');
-
-/**
- * Clean up options on plugin uninstallation
- */
-function turn_off_comments_uninstall() {
-    delete_option('turn_off_comments_installed');
-}
-register_uninstall_hook(__FILE__, 'turn_off_comments_uninstall');
-
-/**
- * Show migration notice for installations before Oct 30, 2025
- */
-function comments_show_migration_notice() {
-    // Only show if new plugin is not active
-    if (is_plugin_active('daisy-comments/daisy-comments.php')) {
-        return;
-    }
-    
-    // Get installation date
-    $install_date = get_option('turn_off_comments_installed');
-    
-    // Only show notice if:
-    // 1. There is NO install date (new installation) OR
-    // 2. Installation date is BEFORE Oct 30, 2025
-    if ($install_date && strtotime($install_date) >= strtotime('2025-10-30')) {
-        return;
-    }
-    
-    // Get install/activate URLs
-    $install_url = wp_nonce_url(
-        add_query_arg([
-            'action' => 'install-plugin',
-            'plugin' => 'daisy-comments'
-        ], admin_url('update.php')),
-        'install-plugin_daisy-comments'
-    );
-    
-    $activate_url = '';
-    if (file_exists(WP_PLUGIN_DIR . '/daisy-comments/daisy-comments.php')) {
-        $activate_url = wp_nonce_url(
-            add_query_arg([
-                'action' => 'activate',
-                'plugin' => 'daisy-comments/daisy-comments.php'
-            ], admin_url('plugins.php')),
-            'activate-plugin_daisy-comments/daisy-comments.php'
-        );
-    }
-    ?>
-    <div class="notice notice-error">
-        <h4><?php esc_html_e('Important Notice About Turn Off Comments', 'turn-off-comments'); ?></h4>
-        <p>
-            <?php _e('This plugin is no longer maintained. Please migrate to our new improved plugin <b style="color: blue;">"Daisy Comments"</b> for continued support, new features, and future updates.', 'turn-off-comments'); ?>
-        </p>
-        <p>
-            <?php if ($activate_url) : ?>
-                <a href="<?php echo esc_url($activate_url); ?>" class="button button-primary">
-                    <?php esc_html_e('Activate Daisy Comments Now', 'turn-off-comments'); ?>
-                </a>
-            <?php else : ?>
-                <a href="<?php echo esc_url($install_url); ?>" class="button button-primary">
-                    <?php esc_html_e('Migrate to Daisy Comments Now', 'turn-off-comments'); ?>
-                </a>
-            <?php endif; ?>
-        </p>
-    </div>
-    <?php
-}
-add_action('admin_notices', 'comments_show_migration_notice');

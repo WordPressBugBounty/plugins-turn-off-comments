@@ -1,10 +1,10 @@
-=== Turn Off Comments — Hide Comment Box and Stop Spam ===
+=== MM Comment Manager — Disable Comment Box, Hide Existing Comments and Stop Spam ===
 Contributors: mehrazmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
-Tags: disable comments, remove comments, hide comments, stop spam, disable comment
+Tags: disable comments, remove comments, hide comments, stop spam, stop comments
 Requires at least: 4.4
-Tested up to: 6.9
-Stable tag: 1.8
+Tested up to: 7.0
+Stable tag: 1.9
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,7 @@ Remove comments functionality from your website!
 
 Remove comments functionality from your website!
 
-The <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> Plugin is a valuable tool for WordPress Websites to remove comment section and hide comments.
+The <strong>[MM Comment Manager](https://wordpress.org/plugins/turn-off-comments)</strong> Plugin is a valuable tool for WordPress Websites to remove comment section and hide comments.
 
 ## Why and how to disable comments and stop spam?
 
@@ -25,40 +25,40 @@ Comments can be a valuable tool for website owners, allowing for engagement with
 * <strong>Moderation Overload:</strong> Managing comments can be time-consuming, especially for websites with high traffic.
 * <strong>Privacy Concerns:</strong> Sometimes, website owners may want to disallow comments for privacy or security reasons.
 
-To address these issues, the <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> offers the essential feature of hide comment section that makes easier to disable comment box and protect your website from spamming.
+To address these issues, the <strong>[MM Comment Manager](https://wordpress.org/plugins/turn-off-comments)</strong> offers the essential feature of hide comment section that makes easier to disable comment box and protect your website from spamming.
 
-## Why use Turn Off Comments?
+## Why use MM Comment Manager?
 
-* By providing a simple, easy to use solution for disabling comment box and hiding comments, <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> empowers WordPress Webmasters to maintain a spam-free and engaging website. 
+* By providing a simple, easy to use solution for disabling comment box and hiding comments, <strong>[MM Comment Manager](https://wordpress.org/plugins/turn-off-comments)</strong> empowers WordPress Webmasters to maintain a spam-free and engaging website. 
 
-* If you're tired of dealing with unwanted comments and are looking to disallow comment features in your WordPress site, consider adding the <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> plugin to your toolkit.
+* If you're tired of dealing with unwanted comments and are looking to disallow comment features in your WordPress site, consider adding the <strong>[MM Comment Manager](https://wordpress.org/plugins/turn-off-comments)</strong> plugin to your toolkit.
 
-* Use <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> Plugin, if you are looking for hiding comment box as well as for removing comment features entirely on your site.
+* Use <strong>[MM Comment Manager](https://wordpress.org/plugins/turn-off-comments)</strong> Plugin, if you are looking for hiding comment box as well as for removing comment features entirely on your site.
 
 == Installation ==
 
-Install the Turn Off Comments plugin via WordPress Dashboard (from plugin directory or from your computer), or upload the files manually to your server and activate the plugin.
+Install the MM Comment Manager plugin via WordPress Dashboard (from plugin directory or from your computer), or upload the files manually to your server and activate the plugin.
 
 = Install via WordPress dashboard =
 
 *From Plugin Directory*
 
 * Visit ‘Plugins > Add New’
-* Search for ‘Turn Off Comments’
+* Search for ‘MM Comment Manager’
 * Install and Activate the plugin
 
 *From Your Computer*
 
-* Download the Turn Off Comments plugin
+* Download the MM Comment Manager plugin
 * Visit ‘Plugins > Add New > Upload Plugin’
 * Choose the plugin file in .zip format
 * Click the Install Now button, and Activate after installation
 
 = Install via Uploading Files Manually =
 
-* Download the Turn Off Comments plugin and unzip the folder
+* Download the MM Comment Manager plugin and unzip the folder
 * Upload the folder to your ‘/wp-content/plugins/’ directory
-* Activate the Turn Off Comments Plugin from Dashboard
+* Activate the MM Comment Manager Plugin from Dashboard
 
 == Frequently Asked Questions ==
 
@@ -71,6 +71,18 @@ Activate the plugin. That's it.
 Just deactivate the plugin.
 
 == Changelog ==
+
+= 1.9 =
+*Release Date - 29 July 2026*
+
+* Fixed: activation hook that failed to register correctly, so plugin data is now handled reliably.
+* Fixed: comments admin redirect now uses `wp_safe_redirect()`.
+* Fixed: activation notice now uses the correct escaping function.
+* Improved: comment-hiding CSS is now enqueued via `wp_add_inline_style()` instead of printed directly to the page head.
+* Improved: all functions now use a unique prefix to prevent conflicts with other plugins and themes.
+* Improved: dashboard "Recent Comments" widget is now removed on the correct hook.
+* Improved: uninstall routine now cleans up all plugin data.
+* Removed: end-of-life migration notice.
 
 = 1.8 =
 *Release Date - 8 November 2025*
