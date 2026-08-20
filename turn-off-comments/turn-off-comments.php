@@ -3,8 +3,8 @@
  * Plugin Name:       MM Comment Manager
  * Plugin URI:        https://wordpress.org/plugins/turn-off-comments/
  * Description:       Turn Off Comments from your WordPress Website.
- * Version:           1.9
- * Tested up to:      7.0
+ * Version:           1.10
+ * Tested up to:      7.1
  * Requires at least: 4.4
  * Requires PHP:      5.6
  * Author:            Mehraz Morshed

@@ -1,10 +1,10 @@
 === MM Comment Manager — Disable Comment Box, Hide Existing Comments and Stop Spam ===
-Contributors: mehrazmorshed
+Contributors: mehrazmorshed, mehrabmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
 Tags: disable comments, remove comments, hide comments, stop spam, stop comments
 Requires at least: 4.4
-Tested up to: 7.0
-Stable tag: 1.9
+Tested up to: 7.1
+Stable tag: 1.10
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,11 @@ Activate the plugin. That's it.
 Just deactivate the plugin.
 
 == Changelog ==
+
+= 1.10 =
+*Release Date - 20 August 2026*
+
+* Tested with WordPress v7.1
 
 = 1.9 =
 *Release Date - 29 July 2026*
